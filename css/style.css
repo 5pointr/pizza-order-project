@@ -35,3 +35,13 @@ h3 {
 .orderBox {
     display:block;
 }
+
+#showText {
+    display:inline-block;
+    margin-right:30px;
+}
+
+#showText2 {
+    display:inline-block;
+    text-align:right;
+}

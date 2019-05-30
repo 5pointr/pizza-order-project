@@ -1,5 +1,6 @@
 function getReceipt() {
     var text1="<h3>Your Order:<h3>";
+    var text2="<h3>Charges:<h3>";
     var runningTotal=0;
     var sizeTotal=0;
     var sizeArray=document.getElementsByClassName("size");
@@ -18,11 +19,12 @@ function getReceipt() {
     } else if (selectedSize==="Extra Large Pizza") {
         sizeTotal=16;
     }
+    text2=text2+"$"+sizeTotal+".00"+"<br>";
     runningTotal=sizeTotal;
-    getMeat(runningTotal,text1);
+    getMeat(runningTotal,text1,text2);
 };
 
-function getMeat(runningTotal,text1) {
+function getMeat(runningTotal,text1,text2) {
     var meatTotal=0;
     var selectedMeat=[];
     var meatArray=document.getElementsByClassName("meat");
@@ -38,13 +40,19 @@ function getMeat(runningTotal,text1) {
     } else {
         meatTotal=0;
     }
+    if (meatCount>0) {
+        text2=text2+"+$"+0+".00"+"<br>";
+    }
+    for (var a=0; a<(meatCount-1); a++)
+        text2=text2+"+$"+1+".00"+"<br>";
     runningTotal=(runningTotal+meatTotal);
     document.getElementById("showText").innerHTML=text1;
+    document.getElementById("showText2").innerHTML=text2;
     document.getElementById("totalPrice").innerHTML="<h3>Total: $"+runningTotal+".00"+"</h3>";
-    getVeggies(runningTotal,text1);
+    getVeggies(runningTotal,text1,text2);
 };
 
-function getVeggies(runningTotal,text1) {
+function getVeggies(runningTotal,text1,text2) {
     var veggiesTotal=0;
     var selectedVeggies=[];
     var veggiesArray=document.getElementsByClassName("veggies");
@@ -60,13 +68,19 @@ function getVeggies(runningTotal,text1) {
     } else {
         veggiesTotal=0;
     }
+    if (veggiesCount>0) {
+        text2=text2+"+$"+0+".00"+"<br>";
+    }
+    for (var b=0; b<(veggiesCount-1); b++)
+        text2=text2+"+$"+1+".00"+"<br>";
     runningTotal=(runningTotal+veggiesTotal);
     document.getElementById("showText").innerHTML=text1;
+    document.getElementById("showText2").innerHTML=text2;
     document.getElementById("totalPrice").innerHTML="<h3>Total: $"+runningTotal+".00"+"</h3>";
-    getCheese(runningTotal,text1);
+    getCheese(runningTotal,text1,text2);
 };
 
-function getCheese(runningTotal,text1) {
+function getCheese(runningTotal,text1,text2) {
     var cheeseTotal=0;
     var selectedCheese=[];
     var cheeseArray=document.getElementsByClassName("cheese");
@@ -81,13 +95,15 @@ function getCheese(runningTotal,text1) {
     } else {
         cheeseTotal=0;
     }
+    text2=text2+"+$"+cheeseTotal+".00"+"<br>";
     runningTotal=(runningTotal+cheeseTotal);
     document.getElementById("showText").innerHTML=text1;
+    document.getElementById("showText2").innerHTML=text2;
     document.getElementById("totalPrice").innerHTML="<h3>Total: $"+runningTotal+".00"+"</h3>";
-    getSauce(runningTotal,text1);
+    getSauce(runningTotal,text1,text2);
 };
 
-function getSauce(runningTotal,text1) {
+function getSauce(runningTotal,text1,text2) {
     var sauceTotal=0;
     var selectedSauce=[];
     var sauceArray=document.getElementsByClassName("sauce");
@@ -98,13 +114,15 @@ function getSauce(runningTotal,text1) {
         }
     }
     sauceTotal=0;
+    text2=text2+"+$"+sauceTotal+".00"+"<br>";
     runningTotal=(runningTotal+sauceTotal);
     document.getElementById("showText").innerHTML=text1;
+    document.getElementById("showText2").innerHTML=text2;
     document.getElementById("totalPrice").innerHTML="<h3>Total: $"+runningTotal+".00"+"</h3>";
-    getCrust(runningTotal,text1);
+    getCrust(runningTotal,text1,text2);
 };
 
-function getCrust(runningTotal,text1) {
+function getCrust(runningTotal,text1,text2) {
     var crustTotal=0;
     var selectedCrust=[];
     var crustArray=document.getElementsByClassName("crust");
@@ -119,7 +137,9 @@ function getCrust(runningTotal,text1) {
     } else {
         crustTotal=0;
     }
+    text2=text2+"+$"+crustTotal+".00"+"<br>";
     runningTotal=(runningTotal+crustTotal);
     document.getElementById("showText").innerHTML=text1;
+    document.getElementById("showText2").innerHTML=text2;
     document.getElementById("totalPrice").innerHTML="<h3>Total: $"+runningTotal+".00"+"</h3>";
 };
